@@ -1,0 +1,98 @@
+[
+  {
+    "file": "Page2.php",
+    "identical": true,
+    "exp1_sha256": "fbf9161e4e6ab30c816d1d9521b06857386a3e97a52ed274c187f07dbc9b27ac",
+    "exp2_sha256": "fbf9161e4e6ab30c816d1d9521b06857386a3e97a52ed274c187f07dbc9b27ac"
+  },
+  {
+    "file": "Page3.php",
+    "identical": false,
+    "exp1_sha256": "f923a540bf54c4e033da1b065d638c6dca38eabc05582383354a98cedc9c1dc0",
+    "exp2_sha256": "19174242aaf07aa7aa95071cf4941bd1721aaa4026126572677135f2960e70ac"
+  },
+  {
+    "file": "Spin@1x-1.0s-200px-200px.gif",
+    "identical": true,
+    "exp1_sha256": "53bed126301cc0291f75e01dc1eab2e1ca58489fd94e0392994ed6b253f24a4f",
+    "exp2_sha256": "53bed126301cc0291f75e01dc1eab2e1ca58489fd94e0392994ed6b253f24a4f"
+  },
+  {
+    "file": "api.php",
+    "identical": true,
+    "exp1_sha256": "123b3e2bf044235dad465499c91edda61cb8de7089e66f08415ae0c22fa8b870",
+    "exp2_sha256": "123b3e2bf044235dad465499c91edda61cb8de7089e66f08415ae0c22fa8b870"
+  },
+  {
+    "file": "back-end/check-member.php",
+    "identical": true,
+    "exp1_sha256": "c108860ccc1aeaa9cdbda51d53655eaaf59443c67270b16da3f3a9e31d4fd5bc",
+    "exp2_sha256": "c108860ccc1aeaa9cdbda51d53655eaaf59443c67270b16da3f3a9e31d4fd5bc"
+  },
+  {
+    "file": "back-end/db.php",
+    "identical": false,
+    "exp1_sha256": "2691f24115573e85805ae348f7cb5941f0a381f4280aa1a2e4ee7919b92ab3f6",
+    "exp2_sha256": "96e97f70a69bef51ca29a06674c6ad55af0f2fe004182ebdc5504b0c18bd63ea"
+  },
+  {
+    "file": "back-end/save-score.php",
+    "identical": false,
+    "exp1_sha256": "e27bd00f9e30890f54a3a86498ce0ef3082da3179c864c970e0b5f36d1d51f3c",
+    "exp2_sha256": "bc0834e5462fbfcf772e7ce7c305db32313086e3e709572f81184edcfe1e23d4"
+  },
+  {
+    "file": "color-1-1.php",
+    "identical": false,
+    "exp1_sha256": "e393d9a710acba69d7352c2a4a09debbb2e4cd560daffbd9cd51f95e696e781e",
+    "exp2_sha256": "6a6149c9beaf57023a07a032d8eb74f584e22f7346de24873dd9111880f15624"
+  },
+  {
+    "file": "color-1-2.php",
+    "identical": false,
+    "exp1_sha256": "ec165ffd24d140bc2c9c02c16eeb1a5353fdb09b352331929fab0f86fbc96fe7",
+    "exp2_sha256": "1a3245182cbb5334cba3ded1015868793200f7b7ed747e2f948f289507d15636"
+  },
+  {
+    "file": "index.php",
+    "identical": true,
+    "exp1_sha256": "f9189029543da3711e2d99823005f7d9cecc5ca4e283fb852016a0786e3b9311",
+    "exp2_sha256": "f9189029543da3711e2d99823005f7d9cecc5ca4e283fb852016a0786e3b9311"
+  },
+  {
+    "file": "rotate-smartphone.png",
+    "identical": true,
+    "exp1_sha256": "90c1d5a0179614280337d0d6080d70080a1be684c2d461e197a6ef3cff161d36",
+    "exp2_sha256": "90c1d5a0179614280337d0d6080d70080a1be684c2d461e197a6ef3cff161d36"
+  },
+  {
+    "file": "script.js",
+    "identical": true,
+    "exp1_sha256": "edc401efa448edfe20dff804df647dfcc3bff95cbcdb9a499128fd8d6adfa91b",
+    "exp2_sha256": "edc401efa448edfe20dff804df647dfcc3bff95cbcdb9a499128fd8d6adfa91b"
+  },
+  {
+    "file": "start.php",
+    "identical": false,
+    "exp1_sha256": "1c87da6bb0be12d894e32ace94da309bde39795bd61975a71b38dfcb846c59aa",
+    "exp2_sha256": "02c4463ea8bfcb4523ff1e2d5ccc3df848980d2c942be50932298707049129dd"
+  },
+  {
+    "file": "styles.css",
+    "identical": true,
+    "exp1_sha256": "609dcec2724cc803ecd751430510fa46d4aac0b13dbe81426bb9c3e02b2fa9fa",
+    "exp2_sha256": "609dcec2724cc803ecd751430510fa46d4aac0b13dbe81426bb9c3e02b2fa9fa"
+  },
+  {
+    "file": "thankyou.php",
+    "identical": true,
+    "exp1_sha256": "43d6151255224c85f02e23ec04728e7d816c315a5e29009fbb15cfdc5d1f7d78",
+    "exp2_sha256": "43d6151255224c85f02e23ec04728e7d816c315a5e29009fbb15cfdc5d1f7d78"
+  },
+  {
+    "file": "welcome.php",
+    "identical": true,
+    "exp1_sha256": "a2a7b601bbc871f81e30a52563f82ed7c2e76b5722aeb176d23149bfe39202d4",
+    "exp2_sha256": "a2a7b601bbc871f81e30a52563f82ed7c2e76b5722aeb176d23149bfe39202d4"
+  }
+]

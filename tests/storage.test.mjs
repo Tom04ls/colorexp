@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {newSession} from '../js/core.js';import {load,save} from '../js/storage.js';
+const make=()=>newSession('TEST',22,'12345678-1234-1234-1234-123456789abc');
+test('storage keeps permutations and zero; quota errors propagate without overwriting',()=>{let raw=null;globalThis.localStorage={getItem:()=>raw,setItem:(_,v)=>raw=v};const s=make();s.blocks[0].startedAt='2026-10-01T00:00:00.000Z';s.blocks[0].scores[10]=0;save(s);assert.deepEqual(load(),s);const before=raw;globalThis.localStorage.setItem=()=>{throw Error('QuotaExceededError');};assert.throws(()=>save(make()));assert.equal(raw,before);});
+test('corrupt JSON or invalid stored order is never silently reset',()=>{let raw='{broken';globalThis.localStorage={getItem:()=>raw,setItem:()=>assert.fail('must not write')};assert.throws(load);const s=make();s.blocks[0].order[0]=s.blocks[0].order[1];raw=JSON.stringify(s);assert.throws(load);});

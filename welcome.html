@@ -1,0 +1,85 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>Welcome</title>
+    <style>
+    body {
+        font-family: "Kanit", serif;
+        font-weight: 300;
+        font-style: normal;
+        display: flex;
+        height: 95vh;
+        justify-content: center;
+        align-items: center;
+        background-color: #000000; /* เพิ่มพื้นหลังสีอ่อน */
+    }
+    .form-container {
+        background-color: white;
+        padding: 1vw 1vh;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+
+    }
+    .button {
+        font-family: "Kanit", serif;
+        font-size: 1.5vw;
+        display: inline-block;
+        margin-top: 20px;
+        margin-bottom: 5vh;
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .button:hover {
+        background-color: #218838;
+    }
+
+    .logout-btn {
+        font-family: "Kanit", serif;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background-color: #dc3545;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1.5vw;
+    }
+    h1{
+        font-size: 5vw;
+        color:rgb(0, 0, 0);
+        width: 80vw;
+    }
+    p{
+        font-family: "Kanit", serif;
+        font-size: 2vw;
+        color:rgb(0, 0, 0);
+        width: 80vw;
+    }
+    b{
+        font-family: "Kanit", serif;
+        font-size: 10vw;
+        color:rgb(0, 0, 0);
+    }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+    <a href="index.html" class="logout-btn">Exit</a>
+    <p>Subject ID : <span id="subject-value"></span></p>
+    <h1>Please score the perceived</h1>
+    <b id="taste-value"></b><br><br><br><br><br>
+    <a href="color-1-2.html" class="button" id="next-link">Next</a>
+    </div>
+    <script type="module" src="js/experiment.js"></script>
+</body>
+</html>

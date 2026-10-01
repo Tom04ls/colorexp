@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+<style>
+    html, body {
+        overflow: hidden;
+        touch-action: none; /* ❗ ปิด gesture เลื่อน */
+    }
+    body {
+        margin: 0;
+        padding: 0;
+
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center; /* ✅ กลางแนวตั้ง */
+
+        background-color: #000;
+        text-align: center;
+
+    }
+    h2{ 
+        font-family: "Kanit", serif; 
+        font-size: 2.5vw; 
+        margin-bottom: -2vh; 
+        color: white; 
+    } 
+    h3{ 
+        font-family: "Kanit", serif; 
+        font-size: 2vw; 
+        margin-top:2vh; 
+        margin-bottom: 2vh; 
+        font-style: normal; 
+        color: white; 
+    }
+    /* 🔽 ส่วนคะแนน */
+    .testrating {
+        font-family: "Kanit", serif; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+    }
+    .rating-column {
+        font-family: "Kanit", serif; 
+        display: grid;
+        grid-template-rows: repeat(6, 1fr);
+        gap: 10px;
+        width: 2vw;
+        margin: 0 auto; /* 🔥 กลางแนวนอน */
+        
+    }
+
+    .rating-column button {
+        font-family: "Kanit", serif; 
+        width: 4vw;
+        height: 5.4vh;
+        font-size: 3.5vh;
+        
+    }
+    .bottom {
+        position: absolute;
+        right: 4vw;       /* ระยะห่างจากขอบขวา */
+        top: 35vh;
+        transform: translateY(-50%); /* จัดให้อยู่กลางแนวตั้ง */
+
+        width: 15vw;      /* กำหนดความกว้าง */
+        text-align: center;
+        transform: translate(2vw, -30vh);
+    }
+    /* ปุ่ม next */
+    .button1 {
+        margin-top: 10px;
+        font-size: 2.2vw;
+        background: none;
+        border: none;
+        color: white;
+        position: absolute;
+        right: 5vw;       /* ระยะห่างจากขอบขวา */
+        top: 95vh;
+
+        width: 5vw;      /* กำหนดความกว้าง */
+        height: 2vh;
+        text-align: center;
+    }
+    .not {
+        font-size: 5vh;
+        position: absolute;
+        right: 3vw;       /* ระยะห่างจากขอบขวา */
+        top: 73vh;
+        width: 20vw;      /* กำหนดความกว้าง */
+        text-align: center;
+    }
+    
+</style>
+
+<body>
+    <div class="page page-2 active">
+        <div style="display: flex; justify-content: center; align-items: center; height: 80vh; margin-top: 10vh; margin-bottom: 10vh;">
+            <!-- แรกสุด: ul container -->
+            <ul class="container" id="page-3-container"></ul>
+            
+            <!-- ถัดไป: rating section -->
+            <div class="bottom">
+                <h2>Score :</h2>
+                <h3><span id="display-taste"></span></h3>
+                <div class="rating-column">
+                    <button onclick="setSelectedRating(5)">5</button>
+                    <button onclick="setSelectedRating(4)">4</button>
+                    <button onclick="setSelectedRating(3)">3</button>
+                    <button onclick="setSelectedRating(2)">2</button>
+                    <button onclick="setSelectedRating(1)">1</button>
+                    <button onclick="setSelectedRating(0)">0</button>
+                </div>
+                <h3>No <span id="taste-name"></span></h3>
+            </div>
+            <div class="not" id="not-sour-section">
+            </div>
+            <div class="button1">
+                <button class="action-btn next" id="submitnext-btn" onclick="checkRatingsAndNavigate2()">⇨</button>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script type="module" src="js/experiment.js"></script>
+</body>
+
+
+
+</html>

@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import crypto from 'node:crypto';
+const root=new URL('../',import.meta.url),baseline=JSON.parse(fs.readFileSync(new URL('docs/ui-style-sha256.json',root)));
+test('original CSS unchanged on all six participant pages',()=>{for(const [name,expected] of Object.entries(baseline)){const raw=fs.readFileSync(new URL(name,root));const data=name.endsWith('.css')?raw:[...raw.toString().matchAll(/<style\b[^>]*>[\s\S]*?<\/style>/g)].map(m=>m[0]).join('\n');assert.equal(crypto.createHash('sha256').update(data).digest('hex'),expected,name);}});
+test('participant pages contain no new language controls, headings or PHP routes',()=>{for(const name of Object.keys(baseline).filter(n=>n.endsWith('.html'))){const s=fs.readFileSync(new URL(name,root),'utf8');assert.doesNotMatch(s,/<\?php|<\?=|href="[^"\n]*\.php|js\/app\.js|id="language"/);}});

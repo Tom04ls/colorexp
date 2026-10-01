@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>Taste of Color Lab</title>
+    <style>
+        
+    html, body {
+        overflow: hidden;
+        touch-action: none; /* ❗ ปิด gesture เลื่อน */
+}
+    body {
+    margin: 0;
+    padding: 0;
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center; /* ✅ กลางแนวตั้ง */
+
+    background-color: #000;
+    text-align: center;
+
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 4vw;
+    padding-bottom: 5vw;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 80%;
+
+    margin: 20px 0; /* เพิ่มระยะบนล่าง */
+}
+
+.form-container img {
+    width: 50vh;
+    height: auto;
+}
+
+h2 {
+    font-family: "Kanit", serif;
+    font-size: 2vw;
+    margin-bottom: 5vh;
+}
+
+span{
+    color: hsl(0, 100%, 40%);
+    font-family: "Kanit", serif;
+    font-size: 2vw;
+    margin-bottom: 5vh;
+}
+
+.button {
+    font-family: "Kanit", serif;
+    padding: clamp(3px, 1vw, 10px) clamp(16px, 2vw, 24px);
+    border: 0px solid #000;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+
+    font-size: 2.2vw;
+    cursor: pointer;
+}
+    .button:hover {
+        background-color: #218838;
+    }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form action="Page2.html">
+                <img src="rotate-smartphone.png" alt="Rotate Smartphone">
+                <h2>
+                    Please ensure that the screen is in 
+                        <span class="highlight">landscape</span>
+                    orientation before starting the test.
+                </h2>
+                <div class="submit-section">
+                    <a href="start.html" class="button">Next</a> 
+                </div>
+        </form>
+    </div>
+    
+    <script type="module" src="js/experiment.js"></script>
+</body>
+</html>

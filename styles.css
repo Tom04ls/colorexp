@@ -1,0 +1,172 @@
+body {
+    font-family: "Kanit", serif;
+    font-weight: 200;
+    font-style: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color:rgb(0, 0, 0);
+}
+.page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column; /* แสดงผลเรียงลำดับแนวตั้ง */
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box; /* เพื่อป้องกัน Overflow */
+}
+.active {
+    display: flex;
+}
+.page-1 {
+    text-align: center;
+}
+.circle-container {
+    position: relative;
+    width: 50vw; /* 50% ของความกว้างหน้าจอ */
+    height: 50vw; /* 50% ของความสูงหน้าจอ */
+    max-width: 300px;
+    max-height: 300px;
+    margin: 0 auto;
+}
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    width: 5vw; /* 5% ของความกว้างหน้าจอ */
+    height: 5vw; 
+    max-width: 50px; /* ขนาดสูงสุด */
+    max-height: 50px;
+    cursor: pointer;
+}
+.page-1 .container{
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    list-style: none;
+    gap: 0.5vw; /* ระยะห่างเป็นสัดส่วนของหน้าจอ */
+    width: 100%; /* ใช้ 90% ของความกว้างหน้าจอ */
+    height: 80%; /* ใช้ 90% ของความสูงหน้าจอ */
+    align-content: center;
+    justify-content: center;
+    padding: 0px;
+    transform: translate(0vw, 0vh);
+
+}
+.page-2 .container,
+.page-3 .container {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    list-style: none;
+    gap: 0.5vw; /* ระยะห่างเป็นสัดส่วนของหน้าจอ */
+    width: 100%; /* ใช้ 90% ของความกว้างหน้าจอ */
+    height: 100%; /* ใช้ 90% ของความสูงหน้าจอ */
+    align-content: center;
+    justify-content: center;
+    padding: 0px;
+    transform: translate(-8vw, 0vh);
+}
+
+.color-box {
+    width: 7.5vh; /* ขนาดเป็น 5% ของความกว้างหน้าจอ */
+    height: 7.5vh;
+    max-width: 500px; /* ขนาดสูงสุด (กรณีจอใหญ่) */
+    max-height: 500px;
+    position: relative;
+    border: 0px solid #ccc;
+    cursor: pointer;
+    box-sizing: border-box; /* เพื่อกัน overflow */
+}
+.color-box span {
+    position: absolute;
+    top: 15%;
+    left: 3px;
+    transform: translateY(-50%);
+    font-size: 12px;
+    font-weight: bold;
+}
+.rating-column {
+    margin-bottom: 70%;
+    margin-left: 30%;
+    display: grid ;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    justify-content: center;
+    align-items: center;
+    width: 10vh; /* ความกว้างประมาณ 10% ของจอ */
+    height: 90%; /* เต็มความสูงของจอ */
+    gap: 1vh; /* ระยะห่างระหว่างปุ่ม */
+}
+.rating-column button {
+    width: 6vh; /* ขนาดขึ้นอยู่กับหน้าจอ */
+    height: 4vw;
+    font-size: 2vw; /* ตัวอักษรปรับตามหน้าจอ */
+    max-width: 100px; /* จำกัดขนาดปุ่มในหน้าจอใหญ่ */
+    max-height: 100px;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 100px ;
+    background-color: #ffffff00;
+    
+}
+.rating-column button:active {
+    transform: scale(0.95);
+    background-color: #3e8e41; /* เปลี่ยนสีเมื่อคลิก */
+}
+.action-btn {
+    margin: 20px 0;
+    padding: 10px 20px;
+    font-size: 1.5vw; /* ปรับขนาดให้ยืดหยุ่น */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.action-btn.next {
+    margin-left: 50%;
+    margin-top: 150%;
+    border: 1px solid #ffffff;
+    border-radius: 100px ;
+    padding: 0px 5px;
+    font-size: 170%;
+    transform: translate( -5vw, -20vh);
+    background-color: #ffffff00;
+}
+.aoi {
+    padding: 0px 0px ;
+    transform: translate( 70px, 70px);
+}
+
+
+@keyframes blink-border {
+    0%, 100% {
+        border: 5px solid #ff0000;
+    }
+    50% {
+        border-color: transparent;
+    }
+}
+
+.color-box.blink {
+    animation: blink-border 1s step-start infinite; /* ขอบกระพริบ */
+}
+
+#incomplete-warning {
+    font-weight: bold;
+    animation: fade-in 0.5s ease-in-out;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+</head>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            touch-action: none;
+            font-family: "Kanit", serif;
+        }
+
+        body {
+            display: grid;
+            grid-template-rows: auto 1fr auto; /* บน / กลาง / ล่าง */
+            background-color: #000;
+        }
+
+        /* 🔝 ส่วนหัว */
+    h1 {
+        position: fixed;
+        left: 5%;
+        top: 10%;
+        font-size: clamp(24px, 4vw, 50px);
+        color: yellow;
+        margin: 20px 0 10px;
+    }
+
+    h2 {
+        position: fixed;
+        left: 5%;
+        top: 20%;
+        color: white;
+        font-size: clamp(16px, 2.5vw, 40px);
+        margin: 10px 0;
+    }
+    h3{ 
+        font-family: "Kanit", serif; 
+        font-size: 2.5vw; 
+        margin-bottom: -2vh; 
+        color: white; 
+    } 
+    h4{ 
+        font-family: "Kanit", serif; 
+        font-size: 2vw; 
+        margin-top:2vh; 
+        margin-bottom: 2vh; 
+        font-style: normal; 
+        color: white; 
+    }
+    h6 {
+        position: fixed;
+        left: 40%;
+        top: 70%;
+        transform: translateX(-50%); /* จัดกลางแนวนอน */
+
+        width: 70vw;
+        font-size: clamp(14px, 2vw, 30px);
+        color: white;
+        text-align: justify;
+    }
+
+    /* 🎨 สี */
+    .bitterness {
+        color: yellow;
+    }
+
+    .instructions {
+        color: red;
+    }
+
+    /* 🎯 กลางจอ */
+    .page-1 .container {
+        position: fixed;
+        left: 40%;
+        top: 45%;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+
+        gap: 0.5vw;
+        width: 10%;
+        height: 10%;
+
+        margin: auto;
+    }
+
+    /* 🔽 ส่วนคะแนน */
+    .testrating {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .rating-column {
+        display: grid;
+        grid-template-rows: repeat(6, 1fr);
+        gap: 10px;
+        width: 2vw;
+        margin: 0 auto; /* 🔥 กลางแนวนอน */
+    }
+
+    .rating-column button {
+        width: 4vw;
+        height: 5.4vh;
+        font-size: 3.5vh;
+    }
+    .bottom {
+        position: absolute;
+        right: 3vw;       /* ระยะห่างจากขอบขวา */
+        top: 38%;
+        transform: translateY(-50%); /* จัดให้อยู่กลางแนวตั้ง */
+
+        width: 15vw; /* กำหนดความกว้าง */
+        text-align: center;
+    }
+    
+    /* ปุ่ม next */
+    .button1 {
+        margin-top: 10px;
+        font-size: 5vw;
+        background: none;
+        border: none;
+        color: white;
+        position: absolute;
+        right: 10vw;       /* ระยะห่างจากขอบขวา */
+        top: 80%;
+
+        width: 50px;      /* กำหนดความกว้าง */
+        text-align: center;
+    }
+    .not {
+        font-size: 5vh;
+        position: absolute;
+        right: 30px;       /* ระยะห่างจากขอบขวา */
+        top: 70%;
+        width: 300px;      /* กำหนดความกว้าง */
+        text-align: center;
+    }
+    </style>
+<body>
+   <div class="page page-1 active">
+    <div class="top">
+        <h1>Practice Trial</h1>
+        <h2>
+            Please rate the perceived
+            <span class="bitterness">bitterness</span>
+            of the color sample.
+        </h2>
+        <h6>
+            <span class="instructions">Instructions</span>
+            To help you understand the evaluation procedure, this practice screen allows you to give a score for your color preference. Select a score and tap or drag on the desired color.
+        </h6>
+    </div>
+
+    <div class="middle">
+        <ul class="container" id="page-1-container"></ul>
+    </div>
+
+    <div class="bottom">
+        <h3>Score :</h3>
+        <h4>Most bitter.</h4>
+
+        <div class="rating-column">
+            <button onclick="setSelectedRating(5)">5</button>
+            <button onclick="setSelectedRating(4)">4</button>
+            <button onclick="setSelectedRating(3)">3</button>
+            <button onclick="setSelectedRating(2)">2</button>
+            <button onclick="setSelectedRating(1)">1</button>
+            <button onclick="setSelectedRating(0)">0</button>
+        </div>
+
+        <h4>No bitter.</h4>
+    </div>
+    <div class="not" id="not-sour-section"></div>
+    <button class="button1" onclick="checkRatingsAndNavigate3()">⇨</button>
+</div>
+    
+    
+    <script type="module" src="js/experiment.js"></script>
+</body>
+</html>

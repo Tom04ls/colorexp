@@ -1,0 +1,162 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>Taste of Color Lab</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <style>
+        html, body {
+            overflow: hidden;
+            touch-action: none; /* ❗ ปิด gesture เลื่อน */
+        }
+        body {
+        margin: 0;
+        padding: 0;
+        font-size: 1vw;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center; /* ✅ กลางแนวตั้ง */
+
+        background-color: #000;
+        text-align: center;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 3vw;
+            padding-bottom: 5vw;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            width: 80%;
+
+            margin: 20px 0; /* เพิ่มระยะบนล่าง */
+        }
+
+        h1 {
+            font-family: "Kanit", serif;
+            font-size: 3.5vw;
+            margin-bottom: 2vh;
+            color: #684375;
+        }
+
+        .text1 {
+            font-family: "Kanit", serif;
+            font-size: 1.8vw;
+            display: block;
+            text-indent: 3em;
+            /* กำหนดระยะเยื้อง */
+            color: rgb(0, 0, 0);
+            text-align: justify;
+            /* จัดข้อความให้ชิดขอบทั้งสองด้าน */
+        }
+
+        .text2 {
+            font-family: "Kanit", serif;
+            font-size: 2vw;
+            font-style: normal;
+            color: rgb(0, 0, 0);
+            text-align: left;
+            transform: translate(-10vw, 0px);
+
+        }
+        .text3 {
+            font-family: "Kanit", serif;
+            font-size: 2.2vw;
+            font-style: normal;
+            color: rgb(0, 0, 0);
+            text-align: left;
+            transform: translate(-10vw, 0px);
+            margin-bottom: 2vh;
+
+        }
+        .text4 {
+            font-family: "Kanit", serif;
+            font-size: 2.2vw;
+            font-style: normal;
+            color: rgb(0, 0, 0);
+            text-align: left;
+            transform: translate(-10vw, 0px);
+
+        }
+
+        .error-message {
+            font-family: "Kanit", serif;
+            font-size: 2.2vw;
+            color: red;
+            margin-top: 10px;
+        }
+
+        .action-btn {
+            font-family: "Kanit", serif;
+            padding: clamp(3px, 1vw, 10px) clamp(16px, 2vw, 24px);
+            border: 0px solid #000;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+
+            font-size: 2.2vw;
+            cursor: pointer;
+        }
+
+        .input1 {
+            font-family: "Kanit", serif;
+            width: 10vw;
+            /* กำหนดความกว้าง */
+            height: 3vh;
+            /* กำหนดความสูง */
+            border: 2px solid #000;
+            /* กำหนดเส้นขอบให้หนาและสีดำ */
+            border-radius: 5px;
+            /* เพิ่มความโค้งของมุม (ไม่จำเป็นสามารถลบออกได้) */
+            padding: 5px;
+            /* เพิ่มพื้นที่ภายในช่อง */
+            font-size: 1.8vw;;
+            /* ขยายขนาดตัวอักษรภายใน */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h1>The relationship between color and taste</h1>
+        <div class="text1">
+            <label" for="">This experiment aims to investigate the relationship between color and taste-related perceptions. Participants will be shown color samples on the screen and asked to score taste association for salty, sweet, sour, bitter, umami, and spicy tastes for each color based on their visual perception. Scores range from 0 to 5 for each taste.</label>
+        </div><br>
+        <div class="text2">
+            <label>5 = the strongest association with the taste.</label><br>
+            <label>0 = no association with the taste.</label>
+        </div><br><br>
+        <form method="POST" action="">
+            <div>
+                <label class="text3" for="member_no">Subject ID : </label>
+                <input class="input1" type="text" id="member_no" name="member_no" required>
+                <br>
+                <br>
+                <label class="text4" for="age">age : </label>
+                <input class="input1" type="int" id="age" name="age" required>
+            </div><br><br>
+            <button type="submit" class="action-btn">start</button>
+        </form>
+        
+    </div>
+    <script type="module" src="js/experiment.js"></script>
+</body>
+
+</html>

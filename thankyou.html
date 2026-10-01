@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>Page 5 - Color Selection</title>
+    <link rel="stylesheet">
+</head>
+<style>
+    html, body {
+        overflow: hidden;
+        touch-action: none; /* ❗ ปิด gesture เลื่อน */
+    }
+    body {
+        margin: 0;
+        padding: 0;
+
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center; /* ✅ กลางแนวตั้ง */
+
+        background-color: #000;
+        text-align: center;
+
+    }
+    .form-container {
+        font-family: "Kanit", serif;
+        text-align: center;
+        background-color: white;
+        padding: 5vw 5vh;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        height: 60vh;
+    }
+    .text1 {
+        font-family: "Kanit", serif;
+        text-align: center;
+        font-size: 3.5vw;
+        width: 20vw;
+        height: 20vh;
+    }
+    .pages{
+        display: grid; /* เปิดใช้งาน Grid */
+        place-items: center; /* จัดให้อยู่กึ่งกลางทั้งแนวตั้งและแนวนอน */
+    }
+    .logout-btn {
+        height: 3.6vh;
+        width: 4.1vw;
+        font-family: "Kanit", serif;
+        position: absolute;
+        bottom: 20vh;
+        left: 47vw;
+        padding: 5px 10px;
+        padding-bottom: 10px;
+        background-color: #dc3545;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 2.2vw;
+    }
+
+</style>
+<body class="pages">
+    <div class="form-container">
+                <br><br><br><h1><label class = "text1" for="ขอบคุณที่เข้าร่วมทำแบบทดสอบ">Thank you for your time and participation.</label></h1>
+                <a href="index.html" class="logout-btn">Exit</a>
+    </div>
+    
+    <script type="module" src="js/experiment.js"></script>
+</body>
+</html>
