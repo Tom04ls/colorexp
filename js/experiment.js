@@ -1,8 +1,10 @@
+import {bindPointerInput} from './pointer-input.js';
+import {mergeResume} from './resume.js';
 import './interaction-guard.js';
 import {CONFIG} from './config.js';
 import {COLORS,newSession,payloadFor} from './core.js';
 import {load,save} from './storage.js';
-import {send,validEndpoint} from './transport.js';
+import {send,validEndpoint,beginSession} from './transport.js';
 import {colors,customColors,renderPage1,renderPage2,updateColorBoxes,setSelectedRating} from './original-render.js';
 const page=location.pathname.split('/').pop()||'index.html';
 const labels={Sweet:['Sweetness.','Sweetest'],Sour:['Sourness.','Sourest'],Salty:['Saltiness.','Saltiest'],Bitter:['Bitterness.','Most bitter'],Umami:['Umaminess.','Most umami'],Spicy:['Spiciness.','Spiciest']};
@@ -19,7 +21,7 @@ function fail(e){
 }
 function commit(change){
  if(frozen)throw Error('Experiment stopped');const next=structuredClone(state);
- try{change(next);save(next);state=next;}catch(e){fail(e);throw e;}
+ try{change(next);next.serverRegistered=!CONFIG.demoMode;save(next);state=next;}catch(e){fail(e);throw e;}
 }
 function showSpinner(){
  if(document.getElementById('spinner-overlay'))return;
@@ -66,33 +68,45 @@ window.checkRatingsAndNavigate2=()=>{
 };
 function renderStart(){
  const form=document.querySelector('form');form.removeAttribute('action');
- form.onsubmit=e=>{
-  e.preventDefault();if(frozen)return;
+ form.onsubmit=async e=>{
+  e.preventDefault();if(frozen||busy)return;
   const subjectId=document.getElementById('member_no').value.trim(),age=Number(document.getElementById('age').value);
   const showError=text=>{let d=document.querySelector('.error-message');if(!d){d=document.createElement('div');d.className='error-message';form.after(d);}d.textContent=text;};
   if(!/^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$/.test(subjectId)){showError('Please enter your member ID.');return;}
   if(!Number.isInteger(age)||age<1||age>120){showError('Please enter your age.');return;}
   if(!CONFIG.demoMode&&!validEndpoint(CONFIG.webAppUrl)){fail(Error('Configure the Web App URL in js/config.js before starting.'));return;}
+  if(state&&index()>=0&&state.subjectId!==subjectId){showError('Another participant has unfinished answers on this device. Please contact the administrator.');return;}
+  busy=true;showSpinner();
   try{
-   if(state&&index()>=0){
-    if(state.subjectId!==subjectId){showError('Subject ID not found!');return;}
-    if(state.age!==age){showError('Please enter your age according to your membership information!');return;}
-    go(!state.practiceComplete?'Page2.html':state.blocks[index()].startedAt?'color-1-2.html':'welcome.html');return;
-   }
-   state=newSession(subjectId,age,crypto.randomUUID());state.practiceComplete=false;state.practiceScores=Array(10).fill(null);save(state);go('Page2.html');
-  }catch(e){fail(e);}
+   let next;
+   if(CONFIG.demoMode){
+    if(state?.subjectId===subjectId){
+      if(state.age!==age)throw Error('Age does not match this Subject ID');
+      if(index()<0)throw Error('Subject ID has already completed the experiment');
+      next=state;
+    }else{next=newSession(subjectId,age,crypto.randomUUID());next.practiceComplete=false;next.practiceScores=Array(10).fill(null);}
+   }else next=mergeResume(await beginSession(subjectId,age,state,CONFIG),state);
+   next.serverRegistered=!CONFIG.demoMode;save(next);state=next;
+   go(!state.practiceComplete?'Page2.html':state.blocks[index()].startedAt?'color-1-2.html':'welcome.html');
+  }catch(e){showError(e.message==='Age does not match this Subject ID'?'Please enter your age according to your membership information!':e.message);}
+  finally{busy=false;hideSpinner();}
  };
 }
 function init(){
  state=load();
  if(page==='start.html'){renderStart();return;}
  if(!state){go('start.html');return;}
+ if(!CONFIG.demoMode&&!state.serverRegistered){go('start.html');return;}
  if(page==='thankyou.html'){if(index()>=0)go('color-1-2.html');return;}
  const i=index();if(i<0){go('thankyou.html');return;}
  if(page==='Page2.html'){
    if(state.practiceComplete){go('welcome.html');return;}
    customColors.forEach((c,j)=>Object.defineProperty(c,'rating',{get:()=>state.practiceScores?.[j]??null,set:value=>commit(s=>{s.practiceScores??=Array(10).fill(null);s.practiceScores[j]=value;})}));
-   renderPage1('page-1-container');return;
+   renderPage1('page-1-container');
+   bindPointerInput(document.getElementById('page-1-container'),document.querySelectorAll('.rating-column button'),setSelectedRating,(position,score)=>{
+    customColors[position].rating=score;
+    document.getElementById('page-1-container').children[position].querySelector('span').textContent=String(score);
+   });return;
  }
  if(!state.practiceComplete){go('Page2.html');return;}
  if(page==='welcome.html'){
@@ -108,7 +122,10 @@ function init(){
      if(state.blocks[i].payload||frozen)return;commit(s=>s.blocks[i].scores[id-1]=value);
     }});colors.push(c);
    });
-   renderPage2('page-3-container');updateColorBoxes('page-3-container');if(state.blocks[i].payload)flush();
+   renderPage2('page-3-container');updateColorBoxes('page-3-container');
+   bindPointerInput(document.getElementById('page-3-container'),document.querySelectorAll('.rating-column button'),setSelectedRating,(position,score)=>{
+    colors[position].rating=score;updateColorBoxes('page-3-container');
+   });if(state.blocks[i].payload)flush();
  }
 }
 window.addEventListener('online',flush);

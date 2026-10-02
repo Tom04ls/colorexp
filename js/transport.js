@@ -15,3 +15,15 @@ export async function send(payload,config) {
     return {key:ack.key,digest:ack.digest};
   } finally {clearTimeout(timer);}
 }
+export async function beginSession(subjectId,age,localState,config){
+ if(!validEndpoint(config.webAppUrl))throw Error('Web App URL is not configured');
+ const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),config.timeoutMs);
+ try{
+  const body={action:'begin',subjectId,age};
+  if(localState?.subjectId===subjectId&&localState.age===age)body.localPlan={sessionId:localState.sessionId,blocks:localState.blocks.map(b=>({taste:b.taste,order:b.order}))};
+  const response=await fetch(config.webAppUrl,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body),redirect:'follow',credentials:'omit',signal:controller.signal});
+  if(!response.ok)throw Error('HTTP '+response.status);
+  const result=await response.json();if(!result.ok||!result.state)throw Error(result.error||'Unable to start experiment');
+  return result.state;
+ }finally{clearTimeout(timer);}
+}
